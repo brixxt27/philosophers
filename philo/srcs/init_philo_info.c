@@ -6,18 +6,22 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 21:05:21 by jayoon            #+#    #+#             */
-/*   Updated: 2022/08/19 21:54:18 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/08/19 22:02:54 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "philo.h"
+#include <stdio.h>
 
 static t_bool	atoi_and_check_error(char *str, ssize_t *num)
 {
 	*num = ft_atol(str);
 	if (*num < 0 || *num > INT_MAX)
+	{
+		printf("Please put int type data of 0 or higher\n");
 		return (FAIL);
+	}
 	return (SUCCESS);
 }
 
