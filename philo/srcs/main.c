@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:20:10 by jayoon            #+#    #+#             */
-/*   Updated: 2022/08/30 21:18:07 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/08/30 21:20:30 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,5 @@ int	main(int argc, char *argv[])
 	// // thread join? detach?
 	// free_all();
 	print_info(&info.state);
-	return (0);
+	return (join_thread(&info, num_of_success_thread));
 }

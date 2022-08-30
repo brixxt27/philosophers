@@ -6,15 +6,17 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 20:28:30 by jayoon            #+#    #+#             */
-/*   Updated: 2022/08/30 21:17:06 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/08/30 21:21:03 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include <pthread.h>
+#include <stdio.h>
 
 static void	*do_routine_each_philo(void *info)
 {
+	printf("Success!\n");
 	return (info);
 }
 
