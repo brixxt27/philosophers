@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_exception.c                                  :+:      :+:    :+:   */
+/*   create_threads.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/19 21:04:00 by jayoon            #+#    #+#             */
-/*   Updated: 2022/08/19 21:04:23 by jayoon           ###   ########.fr       */
+/*   Created: 2022/08/30 20:28:30 by jayoon            #+#    #+#             */
+/*   Updated: 2022/08/30 21:17:06 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <stdio.h>
+#include <pthread.h>
 
-t_bool	check_exception(int argc)
+static void	*do_routine_each_philo(void *info)
 {
-	if (argc < 5 || argc > 6)
+	return (info);
+}
+
+t_bool	create_threads(t_philo_info *info)
+{
+	ssize_t	i;
+	int		ret;
+
+	i = 0;
+	while (i < info->state.num_philo)
 	{
-		printf("The number of parameters must be five of six.\n");
-		return (FAIL);
+		ret = pthread_create(info->thread, NULL, do_routine_each_philo, info);
+		if (ret != 0)
+			break ;
+		i++;
 	}
-	return (SUCCESS);
+	return (i);
 }

@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_philo_info.c                                  :+:      :+:    :+:   */
+/*   check_the_number_of_arguments.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/30 20:48:42 by jayoon            #+#    #+#             */
-/*   Updated: 2022/08/30 21:15:56 by jayoon           ###   ########.fr       */
+/*   Created: 2022/08/19 21:04:00 by jayoon            #+#    #+#             */
+/*   Updated: 2022/08/30 20:04:39 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <stdlib.h>
+#include <stdio.h>
 
-t_bool	init_philo_info(t_philo_info *info)
+t_bool	check_the_number_of_arguments(int argc)
 {
-	info->thread = malloc(sizeof(pthread_t) * info->state.num_philo);
-	if (info->thread == NULL)
+	if (argc < 5 || argc > 6)
+	{
+		printf("The number of parameters must be five of six.\n");
 		return (FAIL);
+	}
 	return (SUCCESS);
 }

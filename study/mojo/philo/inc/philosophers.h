@@ -47,7 +47,7 @@ int		watch_threads(t_philo *philos);
 int		exit_threads(int ex, t_philo *philo);
 void	philo_eating(t_philo *philo);
 void	*philo_routin(void *p);
-void	clear_mutex(t_glob *info, int size)
+void	clear_mutex(t_glob *info, int size);
 int		args_control(int ac, char **av);
 long	get_current_time(long start);
 

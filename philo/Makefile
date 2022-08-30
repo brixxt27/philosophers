@@ -6,7 +6,7 @@
 #    By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/30 21:13:32 by jayoon            #+#    #+#              #
-#    Updated: 2022/08/19 21:49:54 by jayoon           ###   ########.fr        #
+#    Updated: 2022/08/30 21:16:33 by jayoon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,11 @@ OBJS_DIR	=	./objs/
 INCS_DIR 	=	./includes/
 LIBFT_DIR	=	./libft/
 
-SRCS_NAME	=	main.c 				\
-				check_exception.c	\
-				init_philo_info.c
+SRCS_NAME	=	main.c 							\
+				check_the_number_of_arguments.c	\
+				init_state_of_philo.c			\
+				init_philo_info.c				\
+				create_threads.c
 
 OBJS_NAME	=	$(SRCS_NAME:.c=.o)
 
