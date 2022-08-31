@@ -1,37 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_threads.c                                   :+:      :+:    :+:   */
+/*   ft_issign.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/30 20:28:30 by jayoon            #+#    #+#             */
-/*   Updated: 2022/08/31 21:29:44 by jayoon           ###   ########.fr       */
+/*   Created: 2022/07/12 22:52:54 by jayoon            #+#    #+#             */
+/*   Updated: 2022/07/12 22:54:13 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
-#include <pthread.h>
-#include <stdio.h>
-
-static void	*do_routine_each_philo(void *info)
+int	ft_issign(int c)
 {
-	printf("Success!\n");
-	return (info);
-}
-
-t_bool	create_threads(t_philo_info *info)
-{
-	ssize_t	i;
-	int		ret;
-
-	i = 0;
-	while (i < info->state.num_philo)
-	{
-		ret = pthread_create(&info->thread[i], NULL, do_routine_each_philo, info);
-		if (ret != 0)
-			break ;
-		i++;
-	}
-	return (i);
+	if (c == '+' || c == '-')
+		return (1);
+	return (0);
 }

@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_threads.c                                   :+:      :+:    :+:   */
+/*   ft_util.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/30 20:28:30 by jayoon            #+#    #+#             */
-/*   Updated: 2022/08/31 21:29:44 by jayoon           ###   ########.fr       */
+/*   Created: 2022/08/31 21:50:31 by jayoon            #+#    #+#             */
+/*   Updated: 2022/08/31 21:55:40 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
-#include <pthread.h>
-#include <stdio.h>
+#ifndef FT_UTIL_H
+# define FT_UTIL_H
 
-static void	*do_routine_each_philo(void *info)
-{
-	printf("Success!\n");
-	return (info);
-}
+# define INT_MAX 2147483647
+# define INT_MIN -2147483648
 
-t_bool	create_threads(t_philo_info *info)
-{
-	ssize_t	i;
-	int		ret;
+# include <unistd.h>
 
-	i = 0;
-	while (i < info->state.num_philo)
-	{
-		ret = pthread_create(&info->thread[i], NULL, do_routine_each_philo, info);
-		if (ret != 0)
-			break ;
-		i++;
-	}
-	return (i);
-}
+ssize_t	ft_atol(const char *str);
+int		ft_isdigit(int c);
+int		ft_issign(int c);
+int		ft_isspace(int c);
+
+#endif

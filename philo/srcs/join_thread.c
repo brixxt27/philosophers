@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_threads.c                                   :+:      :+:    :+:   */
+/*   join_thread.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/30 20:28:30 by jayoon            #+#    #+#             */
-/*   Updated: 2022/08/31 21:29:44 by jayoon           ###   ########.fr       */
+/*   Created: 2022/08/31 21:41:10 by jayoon            #+#    #+#             */
+/*   Updated: 2022/08/31 21:41:46 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <pthread.h>
-#include <stdio.h>
 
-static void	*do_routine_each_philo(void *info)
+int	join_thread(t_philo_info *info, int num_of_success_thread)
 {
-	printf("Success!\n");
-	return (info);
-}
+	int	i;
 
-t_bool	create_threads(t_philo_info *info)
-{
-	ssize_t	i;
-	int		ret;
-
-	i = 0;
-	while (i < info->state.num_philo)
+	i = num_of_success_thread;
+	while (i > 0)
 	{
-		ret = pthread_create(&info->thread[i], NULL, do_routine_each_philo, info);
-		if (ret != 0)
-			break ;
-		i++;
+		pthread_join(info->thread[i - 1], NULL);
+		i--;
 	}
-	return (i);
+	if (num_of_success_thread == info->state.num_philo)
+		return (0);
+	return (1);
 }

@@ -1,37 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_threads.c                                   :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/30 20:28:30 by jayoon            #+#    #+#             */
-/*   Updated: 2022/08/31 21:29:44 by jayoon           ###   ########.fr       */
+/*   Created: 2022/07/02 17:55:29 by jayoon            #+#    #+#             */
+/*   Updated: 2022/07/02 21:36:10 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
-#include <pthread.h>
-#include <stdio.h>
-
-static void	*do_routine_each_philo(void *info)
+int	ft_isspace(int c)
 {
-	printf("Success!\n");
-	return (info);
-}
-
-t_bool	create_threads(t_philo_info *info)
-{
-	ssize_t	i;
-	int		ret;
-
-	i = 0;
-	while (i < info->state.num_philo)
-	{
-		ret = pthread_create(&info->thread[i], NULL, do_routine_each_philo, info);
-		if (ret != 0)
-			break ;
-		i++;
-	}
-	return (i);
+	if (c == ' ' || c == '\n' || c == '\t'
+		|| c == '\v' || c == '\r' || c == '\f')
+		return (1);
+	return (0);
 }

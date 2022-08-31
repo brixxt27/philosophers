@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_util.h"
 #include "philo.h"
 #include <stdio.h>
 
