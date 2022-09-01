@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 21:41:10 by jayoon            #+#    #+#             */
-/*   Updated: 2022/08/31 21:41:46 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/01 20:01:31 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ int	join_thread(t_philo_info *info, int num_of_success_thread)
 {
 	int	i;
 
-	i = num_of_success_thread;
-	while (i > 0)
+	i = 0;
+	while (i < num_of_success_thread)
 	{
-		pthread_join(info->thread[i - 1], NULL);
-		i--;
+		pthread_join(info[i].thread, NULL);
+		i++;
 	}
-	if (num_of_success_thread == info->state.num_philo)
+	if (num_of_success_thread == info->state->num_philo)
 		return (0);
 	return (1);
 }

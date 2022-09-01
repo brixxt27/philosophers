@@ -6,18 +6,47 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 20:28:30 by jayoon            #+#    #+#             */
-/*   Updated: 2022/08/31 21:29:44 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/01 21:01:53 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include <pthread.h>
-#include <stdio.h>
+#include <sys/time.h>
 
-static void	*do_routine_each_philo(void *info)
+static ssize_t	get_now_time(void)
 {
-	printf("Success!\n");
-	return (info);
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
+
+static int	is_die(t_philo_info *info)
+{
+	if (get_now_time() - info->last_time_to_eat > info->state->time_to_die)
+		return (1);
+	return (0);
+}
+
+static void	*do_routine_each_philo(void *fptr)
+{
+	t_philo_info	*info;
+
+	info = (t_philo_info *)fptr;
+	while (1)
+	{
+		if (is_die(info))
+			break ;
+		thinking();
+		if (is_die(info))
+			break ;
+		eating();
+		if (is_die(info))
+			break ;
+		sleeping();
+	}
+	return ((void *)info);
 }
 
 t_bool	create_threads(t_philo_info *info)
@@ -26,9 +55,10 @@ t_bool	create_threads(t_philo_info *info)
 	int		ret;
 
 	i = 0;
-	while (i < info->state.num_philo)
+	while (i < info->state->num_philo)
 	{
-		ret = pthread_create(&info->thread[i], NULL, do_routine_each_philo, info);
+		ret = pthread_create(&info[i].thread, NULL, do_routine_each_philo, \
+								&info[i]);
 		if (ret != 0)
 			break ;
 		i++;
