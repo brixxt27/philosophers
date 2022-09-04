@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 20:28:30 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/01 21:01:53 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/04 22:17:29 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ static void	*do_routine_each_philo(void *fptr)
 	{
 		if (is_die(info))
 			break ;
-		thinking();
+		routine_think();
 		if (is_die(info))
 			break ;
-		eating();
+		routine_eat();
 		if (is_die(info))
 			break ;
-		sleeping();
+		routine_sleep();
 	}
 	return ((void *)info);
 }

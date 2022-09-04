@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:19:41 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/01 20:56:29 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/04 23:04:41 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,10 @@ typedef struct s_state_of_philo
 
 typedef struct s_philo_info
 {
-	pthread_t			thread;
+	pthread_t			tid;
 	t_state_of_philo	*state;
 	ssize_t				last_time_to_eat;
+	int					idx;
 }	t_philo_info;
 
 /* check exeception and init variable */
@@ -49,5 +50,8 @@ t_philo_info	*init_philo_info(t_state_of_philo *state);
 /* about thread */
 t_bool			create_threads(t_philo_info *info);
 int				join_thread(t_philo_info *info, int num_of_success_thread);
+
+/* main lohic */
+void  			monitor_philos(t_philo_info *info);
 
 #endif
