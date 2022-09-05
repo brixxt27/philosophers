@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:20:10 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/04 21:34:29 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/06 04:29:09 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,17 @@ int	main(int argc, char *argv[])
 	if (info == NULL)
 		return (1);
 	num_of_success_thread = create_threads(info);
-	if (num_of_success_thread != state.num_philo)
-	{
-		free_all(info);
-		return (join_thread(info, num_of_success_thread));
-	}
-	monitor_philos(info);
-	free_all(info);
+	num_of_success_thread = num_of_success_thread - 1;
+	// return (join_thread(info, num_of_success_thread));
+}
+
 	// print_state(&state);
 	// system("leaks philo");
-	return (join_thread(info, num_of_success_thread));
-}
+
+	// monitor_philos(info);
+	// free_all(info);
+	// if (num_of_success_thread != state.num_philo)
+	// {
+	// 	free_all(info);
+	// 	return (join_thread(info, num_of_success_thread));
+	// }
