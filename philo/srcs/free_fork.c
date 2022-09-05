@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   monitor_philos.c                                   :+:      :+:    :+:   */
+/*   free_fork.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/04 21:16:37 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/06 04:46:15 by jayoon           ###   ########.fr       */
+/*   Created: 2022/09/06 05:37:05 by jayoon            #+#    #+#             */
+/*   Updated: 2022/09/06 05:41:23 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+#include <pthread.h>
+#include <stdlib.h>
 
-void  monitor_philos(t_philo_info *info)
+t_bool	free_fork(pthread_mutex_t *m_fork)
 {
-    while ()
+	free(m_fork);
+	m_fork = NULL;
+	return (FAIL);
 }

@@ -1,34 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_philo_info.c                                  :+:      :+:    :+:   */
+/*   init_mutex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/30 20:48:42 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/06 05:33:40 by jayoon           ###   ########.fr       */
+/*   Created: 2022/09/06 05:06:58 by jayoon            #+#    #+#             */
+/*   Updated: 2022/09/06 05:41:45 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include <pthread.h>
+#include <philo.h>
 #include <stdlib.h>
+#include "ft_util.h"
 
-t_philo_info	*init_philo_info(t_state_of_philo *state, t_mutex_list *m_list)
+t_bool	init_mutex(t_state_of_philo *state, t_mutex_list *m_list)
 {
-	t_philo_info	*info;
-	ssize_t				i;
+	int	i;
+	int	ret;
 
 	i = 0;
-	info = (t_philo_info *)malloc(sizeof(t_philo_info) * state->num_philo);
-	if (info == NULL)
-		return (NULL);
+	ret = pthread_mutex_init(m_list->m_fork, NULL);
+	if (ret != 0)
+		return (FAIL);
+	m_list->m_fork = malloc(sizeof(state->num_philo));
+	if (m_list->m_fork == NULL)
+		return (FAIL);
 	while (i < state->num_philo)
 	{
-		info[i].state = state;
-		info[i].m_list = m_list;
-		info[i].last_time_to_eat = 0;
-		info[i].idx = i + 1;
+		ret = pthread_mutex_init(&m_list->m_fork[i], NULL);
+		if (ret != 0)
+			break ;
 		i++;
-	}
-	return (info);
+	}	
+	if (ret != 0)
+		return (free_fork(m_list->m_fork));
+	return (SUCCESS);
 }

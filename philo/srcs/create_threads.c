@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 20:28:30 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/06 04:30:22 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/06 05:44:31 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,9 @@
 
 static void	*do_routine_each_philo(void *fptr)
 {
-	// t_philo_info	*info;
+	t_philo_info	*info;
 
-	// info = (t_philo_info *)fptr;
-	// printf("%d\n", info->idx);
-	// is_die(info);
+	info = (t_philo_info *)fptr;
 	// while (1)
 	// {
 	// 	if (is_die(info))
@@ -49,10 +47,8 @@ static void	*do_routine_each_philo(void *fptr)
 	// 		break ;
 	// 	routine_sleep();
 	// }
-	// return ((void *)info);
-
-
-	return (fptr);
+	
+	return ((void *)info);
 }
 
 t_bool	create_threads(t_philo_info *info)
