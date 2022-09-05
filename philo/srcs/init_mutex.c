@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 05:06:58 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/06 05:41:45 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/06 05:57:56 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_bool	init_mutex(t_state_of_philo *state, t_mutex_list *m_list)
 	ret = pthread_mutex_init(m_list->m_fork, NULL);
 	if (ret != 0)
 		return (FAIL);
-	m_list->m_fork = malloc(sizeof(state->num_philo));
+	m_list->m_fork = malloc(sizeof(pthread_mutex_t) * state->num_philo);
 	if (m_list->m_fork == NULL)
 		return (FAIL);
 	while (i < state->num_philo)
