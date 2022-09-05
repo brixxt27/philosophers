@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 05:06:58 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/06 05:57:56 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/06 06:15:49 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ t_bool	init_mutex(t_state_of_philo *state, t_mutex_list *m_list)
 		i++;
 	}	
 	if (ret != 0)
+	{
+		// i 만큼 destroy mutex 해야 함
 		return (free_fork(m_list->m_fork));
+	}
 	return (SUCCESS);
 }
