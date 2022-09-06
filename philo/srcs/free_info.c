@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_fork.c                                        :+:      :+:    :+:   */
+/*   free_info.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/06 05:37:05 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/06 23:38:37 by jayoon           ###   ########.fr       */
+/*   Created: 2022/09/07 00:04:44 by jayoon            #+#    #+#             */
+/*   Updated: 2022/09/07 00:05:45 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <pthread.h>
 #include <stdlib.h>
 
-t_bool	free_fork(pthread_mutex_t *m_fork)
+t_bool  free_info(t_philo_info *info)
 {
-	// free fork 메인에서 결국 사용하지 않는다! 지워라
-	free(m_fork);
-
-	m_fork = NULL;
-	return (FAIL);
+    free(info);
+    info = NULL;
+    return (FAIL);
 }

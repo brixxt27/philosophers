@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 05:06:58 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/06 23:35:49 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/07 00:20:25 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,38 +15,52 @@
 #include <stdlib.h>
 #include "ft_util.h"
 
-static t_bool	init_print_mutex(pthread_mutex_t *m_print)
+static t_bool	init_m_print(t_mutex_list *m_list)
 {
 	int	ret;
 
-	ret = pthread_mutex_init(m_print, NULL);
+	ret = pthread_mutex_init(&m_list->m_print, NULL);
 	if (ret != 0)
 		return (FAIL);
 	return (SUCCESS);
 }
 
-static t_bool	malloc_m_fork(t_state_of_philo *state, pthread_mutex_t *m_fork)
+static t_bool	malloc_m_fork(t_state_of_philo *state, t_mutex_list *m_list)
 {
-	m_fork = malloc(sizeof(pthread_mutex_t) * state->num_philo);
-	if (m_fork == NULL)
+	m_list->m_fork = malloc(sizeof(pthread_mutex_t) * state->num_philo);
+	if (m_list->m_fork == NULL)
 		return (FAIL);
 	return (SUCCESS);
 }
 
-static t_bool	init_fork_mutex(t_state_of_philo *state, \
-	pthread_mutex_t *m_fork, int *pi)
+static t_bool	init_m_fork(t_state_of_philo *state, \
+	t_mutex_list *m_list, int *pi)
 {
 	int	ret;
 
 	ret = 0;
 	while (*pi < state->num_philo)
 	{
-		ret = pthread_mutex_init(&m_fork[*pi], NULL);
+		ret = pthread_mutex_init(&m_list->m_fork[*pi], NULL);
 		if (ret != 0)
 			return (FAIL);
-		*pi++;
+		(*pi)++;
 	}	
 	return (SUCCESS);
+}
+
+static void	destroy_and_free_m_fork(t_mutex_list *m_list, int i)
+{
+	int	idx;
+
+	idx = 0;
+	while (idx < i)
+	{
+		pthread_mutex_destroy(&m_list->m_fork[idx]);
+		idx++;
+	}
+	free(m_list->m_fork);
+	m_list->m_fork = NULL;
 }
 
 t_bool	init_mutex(t_state_of_philo *state, t_mutex_list *m_list)
@@ -54,44 +68,15 @@ t_bool	init_mutex(t_state_of_philo *state, t_mutex_list *m_list)
 	int	i;
 
 	i = 0;
-	if (init_print_mutex(&m_list->m_print) == SUCCESS)
+	if (init_m_print(m_list) == SUCCESS)
 	{
-		if (malloc_m_fork(state, m_list->m_fork) == SUCCESS)
+		if (malloc_m_fork(state, m_list) == SUCCESS)
 		{
-			if (init_m_fork(state, m_list->m_fork, &i) == SUCCESS)
+			if (init_m_fork(state, m_list, &i) == SUCCESS)
 				return (SUCCESS); 
-				// i 만큼 destroy mutex 해야 함
-				// free m_fork
+			destroy_and_free_m_fork(m_list, i);
 		}
-		// destroy m_print
+		pthread_mutex_destroy(&m_list->m_print);
 	}
-	// free info
 	return (FAIL);
 }
-
-/* 원래 작성한 함수인데 실패했을 때의 분기의 편의성 때문에 다시 작성 */
-// t_bool	init_mutex(t_state_of_philo *state, t_mutex_list *m_list)
-// {
-// 	int	i;
-// 	int	ret;
-
-// 	i = 0;
-// 	if (init_print_mutex(&m_list->m_print) == FAIL)
-// 		return (FAIL);
-// 	m_list->m_fork = malloc(sizeof(pthread_mutex_t) * state->num_philo);
-// 	if (m_list->m_fork == NULL)
-// 		return (FAIL);
-// 	while (i < state->num_philo)
-// 	{
-// 		ret = pthread_mutex_init(&m_list->m_fork[i], NULL);
-// 		if (ret != 0)
-// 			break ;
-// 		i++;
-// 	}	
-// 	if (ret != 0)
-// 	{
-// 		// i 만큼 destroy mutex 해야 함
-// 		return (free_fork(m_list->m_fork));
-// 	}
-// 	return (SUCCESS);
-// }

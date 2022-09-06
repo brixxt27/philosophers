@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 21:50:31 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/06 05:42:41 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/07 00:19:13 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,14 @@
 # include "philo.h"
 # include <unistd.h>
 
+/* libft */
 ssize_t	ft_atol(const char *str);
 int		ft_isdigit(int c);
 int		ft_issign(int c);
 int		ft_isspace(int c);
-t_bool	free_fork(pthread_mutex_t *m_fork);
+
+/* free */
+t_bool  free_info(t_philo_info *info);
 void	free_all(t_philo_info *info);
 
 #endif
