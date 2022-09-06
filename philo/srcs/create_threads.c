@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 20:28:30 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/06 17:37:37 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/07 00:26:34 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void	*do_routine_each_philo(void *fptr)
 	t_philo_info	*info;
 
 	info = (t_philo_info *)fptr;
+	printf("%d\n", info->idx);
 	// while (1)
 	// {
 	// 	if (is_die(info))
