@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:20:10 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/06 06:13:55 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/06 23:36:45 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,10 @@ int	main(int argc, char *argv[])
 		return (1);
 	if (init_state_of_philo(&state, argc, argv) == FAIL)
 		return (1);
-	if (init_mutex(&state, &m_list) == FAIL)
-		return (1);
 	info = init_philo_info(&state, &m_list);
 	if (info == NULL)
-		// mutex destroy
+		return (1);
+	if (init_mutex(&state, &m_list) == FAIL)
 		return (free_fork(m_list.m_fork));
 	num_of_success_thread = create_threads(info);
 	// if (num_of_success_thread != state.num_philo)
@@ -51,7 +50,7 @@ int	main(int argc, char *argv[])
 	// 	return (join_thread(info, num_of_success_thread));
 	// }
 	// monitor_philos(info);
-	free_all(info);
+	// free_all(info);
 	// mutex destroy
 	return (join_thread(info, num_of_success_thread));
 }

@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 05:37:05 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/06 05:41:23 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/06 23:38:37 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 
 t_bool	free_fork(pthread_mutex_t *m_fork)
 {
+	// free fork 메인에서 결국 사용하지 않는다! 지워라
 	free(m_fork);
+
 	m_fork = NULL;
 	return (FAIL);
 }
