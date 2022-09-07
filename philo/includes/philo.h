@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:19:41 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/06 05:45:30 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/07 15:35:46 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,17 @@
 # include <unistd.h>
 # include <pthread.h>
 
-# define ALIVE	1
-
 typedef enum e_bool
 {
 	SUCCESS,
 	FAIL
 }	t_bool;
+
+typedef enum e_philo_dead
+{
+	ALIVE,
+	DEAD
+}	t_philo_dead;
 
 typedef struct s_mutex_list
 {
@@ -32,11 +36,12 @@ typedef struct s_mutex_list
 
 typedef struct s_state_of_philo
 {
-	ssize_t		num_philo;
-	ssize_t		time_to_die;
-	ssize_t		time_to_eat;
-	ssize_t		time_to_sleep;
-	ssize_t		num_must_eat;
+	ssize_t			num_philo;
+	ssize_t			time_to_die;
+	ssize_t			time_to_eat;
+	ssize_t			time_to_sleep;
+	ssize_t			num_must_eat;
+	t_philo_dead	flag_dead;
 }	t_state_of_philo;
 
 typedef struct s_philo_info

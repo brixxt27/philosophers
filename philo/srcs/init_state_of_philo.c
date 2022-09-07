@@ -19,7 +19,7 @@ static t_bool	atoi_and_check_error(char *str, ssize_t *num)
 	*num = ft_atol(str);
 	if (*num < 0 || *num > INT_MAX)
 	{
-		printf("Please put int type data of 0 or higher\n");
+		printf("Please put in int type data of 1 or higher\n");
 		return (FAIL);
 	}
 	return (SUCCESS);
@@ -36,6 +36,7 @@ t_bool	init_state_of_philo(t_state_of_philo *state, int argc, char *argv[])
 	if (atoi_and_check_error(argv[4], &state->time_to_sleep) == FAIL)
 		return (FAIL);
 	state->num_must_eat = -1;
+	state->flag_dead = 1;
 	if (argc == 6)
 	{
 		if (atoi_and_check_error(argv[5], &state->num_must_eat) == FAIL)

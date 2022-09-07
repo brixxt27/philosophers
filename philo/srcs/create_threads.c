@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 20:28:30 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/07 00:26:34 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/07 15:38:40 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static void	*do_routine_each_philo(void *fptr)
 	t_philo_info	*info;
 
 	info = (t_philo_info *)fptr;
-	printf("%d\n", info->idx);
 	// while (1)
 	// {
 	// 	if (is_die(info))
@@ -48,7 +47,10 @@ static void	*do_routine_each_philo(void *fptr)
 	// 		break ;
 	// 	routine_sleep();
 	// }
-	
+	pthread_mutex_lock(&info->m_list->m_print);
+	info->state->flag_dead++;
+	printf("idx: %d, flag: %d\n", info->idx, info->state->flag_dead);
+	pthread_mutex_unlock(&info->m_list->m_print);
 	return ((void *)info);
 }
 
