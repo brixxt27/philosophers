@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_util.h                                          :+:      :+:    :+:   */
+/*   free_info.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/31 21:50:31 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/07 00:19:13 by jayoon           ###   ########.fr       */
+/*   Created: 2022/09/07 00:04:44 by jayoon            #+#    #+#             */
+/*   Updated: 2022/09/07 00:05:45 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_UTIL_H
-# define FT_UTIL_H
+#include "philo.h"
+#include <stdlib.h>
 
-# define INT_MAX 2147483647
-# define INT_MIN -2147483648
-
-# include "philo.h"
-# include <unistd.h>
-
-/* libft */
-ssize_t	ft_atol(const char *str);
-int		ft_isdigit(int c);
-int		ft_issign(int c);
-int		ft_isspace(int c);
-
-/* free */
-t_bool  free_info(t_philo_info *info);
-void	free_all(t_philo_info *info);
-
-#endif
+t_bool  free_info(t_philo_info *info)
+{
+    free(info);
+    info = NULL;
+    return (FAIL);
+}

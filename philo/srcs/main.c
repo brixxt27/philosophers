@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:20:10 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/01 20:08:23 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/07 00:06:02 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,30 @@ int	main(int argc, char *argv[])
 {
 	t_philo_info		*info;
 	t_state_of_philo	state;
+	t_mutex_list		m_list;
 	int					num_of_success_thread;
 
 	if (check_the_number_of_arguments(argc) == FAIL)
 		return (1);
 	if (init_state_of_philo(&state, argc, argv) == FAIL)
 		return (1);
-	info = init_philo_info(&state);
+	info = init_philo_info(&state, &m_list);
 	if (info == NULL)
 		return (1);
+	if (init_mutex(&state, &m_list) == FAIL)
+		return (free_info(info));
 	num_of_success_thread = create_threads(info);
-	if (num_of_success_thread != state.num_philo)
-	{
-		free_all(info);
-		return (join_thread(info, num_of_success_thread));
-	}
-	// if (watch_by_main_thread() == FAIL)
-	// 	return (free_all());
-	free_all(info);
-	// print_state(&state);
-	// system("leaks philo");
+	// if (num_of_success_thread != state.num_philo)
+	// {
+	// 	free_all(info);
+	// 	return (join_thread(info, num_of_success_thread));
+	// }
+	// monitor_philos(info);
+	// free_all(info);
+	// mutex destroy
 	return (join_thread(info, num_of_success_thread));
 }
+
+	// print_state(&state);
+	// system("leaks philo");
+
