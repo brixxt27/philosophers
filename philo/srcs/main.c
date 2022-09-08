@@ -6,25 +6,25 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:20:10 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/07 00:06:02 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/08 20:13:23 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_util.h"
 #include "philo.h"
 
-
-// system()
-#include <stdlib.h>
-// printf()
-#include <stdio.h>
-void	print_state(t_state_of_philo *state)
+static void	destroy_mutex(t_mutex_list *m_list, int num_of_thread)
 {
-	printf("%zd\n", state->num_philo);
-	printf("%zd\n", state->time_to_die);
-	printf("%zd\n", state->time_to_eat);
-	printf("%zd\n", state->time_to_sleep);
-	printf("%zd\n", state->num_must_eat);
+	int	i;
+
+	i = 0;
+	pthread_mutex_destroy(&m_list->m_flag_dead);
+	pthread_mutex_destroy(&m_list->m_print);
+	while (i < num_of_thread)
+	{
+		pthread_mutex_destroy(&m_list->m_fork[i]);
+		i++;
+	}
 }
 
 int	main(int argc, char *argv[])
@@ -47,14 +47,11 @@ int	main(int argc, char *argv[])
 	// if (num_of_success_thread != state.num_philo)
 	// {
 	// 	free_all(info);
+	// 	destroy_mutex(&m_list, num_of_success_thread);
 	// 	return (join_thread(info, num_of_success_thread));
 	// }
 	// monitor_philos(info);
 	// free_all(info);
-	// mutex destroy
+	destroy_mutex(&m_list, num_of_success_thread);
 	return (join_thread(info, num_of_success_thread));
 }
-
-	// print_state(&state);
-	// system("leaks philo");
-

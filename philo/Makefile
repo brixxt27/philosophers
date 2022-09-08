@@ -6,7 +6,7 @@
 #    By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/30 21:13:32 by jayoon            #+#    #+#              #
-#    Updated: 2022/09/07 00:20:47 by jayoon           ###   ########.fr        #
+#    Updated: 2022/09/08 19:54:55 by jayoon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,13 +48,13 @@ endif
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -o $@
+	$(CC) $(CFLAGS) $(OBJS) -o $@
 
 $(OBJS_DIR):
-	@mkdir $(OBJS_DIR)
+	mkdir $(OBJS_DIR)
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c | $(OBJS_DIR)
-	@$(CC) $(CFLAGS) $(INCS_FLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCS_FLAGS) -c $< -o $@
 
 debug: 
 	$(MAKE) DEBUG_FLAG=1

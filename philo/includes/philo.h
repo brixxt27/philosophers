@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:19:41 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/07 15:35:46 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/08 17:45:10 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ typedef enum e_philo_dead
 
 typedef struct s_mutex_list
 {
-	pthread_mutex_t	m_print;
+	pthread_mutex_t	m_flag_dead;
 	pthread_mutex_t	*m_fork;
+	pthread_mutex_t	m_print;
 }	t_mutex_list;
 
 typedef struct s_state_of_philo
@@ -49,6 +50,8 @@ typedef struct s_philo_info
 	pthread_t			tid;
 	t_state_of_philo	*state;
 	t_mutex_list		*m_list;
+	pthread_mutex_t		*right_fork;
+	pthread_mutex_t		*left_fork;
 	ssize_t				last_time_to_eat;
 	int					idx;
 }	t_philo_info;

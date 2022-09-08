@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 20:28:30 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/07 15:38:40 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/08 19:59:25 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,27 +30,24 @@
 // 	return (0);
 // }
 
+// static void	*routine_think(t_philo_info *info)
+// {
+	
+// }
+
+static void	put_up_fork(t_philo_info *info)
+
 static void	*do_routine_each_philo(void *fptr)
 {
 	t_philo_info	*info;
 
 	info = (t_philo_info *)fptr;
-	// while (1)
-	// {
-	// 	if (is_die(info))
-	// 		break ;
-	// 	routine_think();
-	// 	if (is_die(info))
-	// 		break ;
-	// 	routine_eat();
-	// 	if (is_die(info))
-	// 		break ;
-	// 	routine_sleep();
-	// }
-	pthread_mutex_lock(&info->m_list->m_print);
-	info->state->flag_dead++;
-	printf("idx: %d, flag: %d\n", info->idx, info->state->flag_dead);
-	pthread_mutex_unlock(&info->m_list->m_print);
+	while (1)
+	{
+		put_up_fork(info);
+		if (routine_think(info) == FAIL)
+			break ;
+	}
 	return ((void *)info);
 }
 
