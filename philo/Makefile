@@ -6,7 +6,7 @@
 #    By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/30 21:13:32 by jayoon            #+#    #+#              #
-#    Updated: 2022/09/09 22:34:35 by jayoon           ###   ########.fr        #
+#    Updated: 2022/09/10 00:14:42 by jayoon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,10 @@ SRCS_NAME	=	check_the_number_of_arguments.c \
 				free_info.c \
 				get_now_time.c \
 				get_row_now_time.c \
-				monitor_philos.c
+				monitor_philos.c	\
+				is_die.c	\
+				put_up_a_fork.c \
+				put_down_a_fork.c
 
 
 OBJS_NAME	=	$(SRCS_NAME:.c=.o)

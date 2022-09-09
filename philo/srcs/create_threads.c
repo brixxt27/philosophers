@@ -6,20 +6,12 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 20:28:30 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/09 23:09:16 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/10 00:19:17 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include <pthread.h>
-#include <sys/time.h>
-
-// static int	is_die(t_philo_info *info)
-// {
-// 	if (get_now_time() - info->time_to_last_eat > info->state->time_to_die)
-// 		return (1);
-// 	return (0);
-// }
 
 // static void	*routine_think(t_philo_info *info)
 // {
@@ -27,47 +19,6 @@
 // }
 
 #include <stdio.h>
-static void	put_up_a_fork(t_philo_info *info)
-{
-	if (info->idx % 2 == 1)
-	{
-		pthread_mutex_lock(info->right_fork);
-		pthread_mutex_lock(&info->sharing->m_print);
-		printf("%lu %d has taken a fork\n", get_now_time(info), info->idx);
-		pthread_mutex_unlock(&info->sharing->m_print);
-		pthread_mutex_lock(info->left_fork);
-		pthread_mutex_lock(&info->sharing->m_print);
-		printf("%lu %d has taken a fork\n", get_now_time(info), info->idx);
-		pthread_mutex_unlock(&info->sharing->m_print);
-	}
-	else
-	{
-		pthread_mutex_lock(info->left_fork);
-		pthread_mutex_lock(&info->sharing->m_print);
-		printf("%lu %d has taken a fork\n", get_now_time(info), info->idx);
-		pthread_mutex_unlock(&info->sharing->m_print);
-		pthread_mutex_lock(info->right_fork);
-		pthread_mutex_lock(&info->sharing->m_print);
-		printf("%lu %d has taken a fork\n", get_now_time(info), info->idx);
-		pthread_mutex_unlock(&info->sharing->m_print);
-	}
-}
-
-static void	put_down_a_fork(t_philo_info *info)
-{
-	if (info->idx % 2 == 1)
-	{
-		pthread_mutex_unlock(info->right_fork);
-		pthread_mutex_unlock(info->left_fork);
-	}
-	else
-	{
-		pthread_mutex_unlock(info->left_fork);
-		pthread_mutex_unlock(info->right_fork);
-	}
-
-}
-
 static void	*do_routine_each_philo(void *fptr)
 {
 	t_philo_info	*info;
@@ -80,13 +31,20 @@ static void	*do_routine_each_philo(void *fptr)
 	pthread_mutex_unlock(&info->sharing->m_flag);
 	while (1)
 	{
-		put_up_a_fork(info);
-		put_down_a_fork(info);
+		if (put_up_a_fork(info) == FAIL)
+			break ;
+		if (put_down_a_fork(info) == FAIL)
+			break ;
 		// if (routine_think(info) == FAIL)
 		// 	break ;
-		// fsanitize 관찰
+		// fsanitize 관찰용 usleep
 		usleep(100000);
 	}
+	// die
+	pthread_mutex_lock(&info->sharing->m_flag);
+	info->sharing->flag_dead = DEAD;
+	pthread_mutex_unlock(&info->sharing->m_flag);
+	printf("die\n");
 	return ((void *)info);
 }
 

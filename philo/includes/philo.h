@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:19:41 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/09 22:43:13 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/10 00:17:40 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,10 @@ int				join_thread(t_philo_info *info, int num_of_success_thread);
 ssize_t			get_row_now_time(void);
 ssize_t			get_now_time(t_philo_info *info);
 
-/* main lohic */
+/* main logic */
 void  			monitor_philos(t_philo_info *info);
+t_bool			put_up_a_fork(t_philo_info *info);
+t_bool			put_down_a_fork(t_philo_info *info);
+int				is_die(t_philo_info *info);
 
 #endif

@@ -6,14 +6,23 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 21:16:37 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/09 23:02:49 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/10 00:21:04 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-
-#include <stdio.h>
+static void	wait_to_create_all_thread(t_philo_info *info)
+{
+	while (1)
+	{
+		pthread_mutex_lock(&info->sharing->m_seat);
+		if (info->sharing->num_seat == info->state->num_philo)
+			break ;
+		pthread_mutex_unlock(&info->sharing->m_seat);
+		usleep(1);
+	}
+}
 
 static void	init_time_to_start_per_philos(t_philo_info *info, 
 	ssize_t time_to_start)
@@ -32,18 +41,16 @@ void  monitor_philos(t_philo_info *info)
 {
 	ssize_t time_to_start;
 
-	while (1)
-	{
-		pthread_mutex_lock(&info->sharing->m_seat);
-		if (info->sharing->num_seat == info->state->num_philo)
-			break ;
-		pthread_mutex_unlock(&info->sharing->m_seat);
-		usleep(1);
-	}
-	// 이 아래로 메인이 오지 않음
+	wait_to_create_all_thread(info);
 	time_to_start = get_row_now_time();
 	init_time_to_start_per_philos(info, time_to_start);
 	pthread_mutex_unlock(&info->sharing->m_flag);
 	while (1)
-	;
+	{
+		pthread_mutex_lock(&info->sharing->m_flag);
+		if (info->sharing->flag_dead == DEAD)
+			break ;
+		pthread_mutex_unlock(&info->sharing->m_flag);
+		usleep(1);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:20:10 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/09 22:39:08 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/10 00:23:31 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static t_bool	destroy_mutex(t_shared_data *sharing, int num_of_thread)
 	i = 0;
 	pthread_mutex_destroy(&sharing->m_flag);
 	pthread_mutex_destroy(&sharing->m_print);
+	pthread_mutex_destroy(&sharing->m_seat);
 	while (i < num_of_thread)
 	{
 		pthread_mutex_destroy(&sharing->m_fork[i]);
@@ -47,12 +48,12 @@ int	main(int argc, char *argv[])
 	num_of_success_thread = create_threads(info);
 	if (num_of_success_thread != state.num_philo)
 	{
-		free_all(info);
 		destroy_mutex(&sharing, num_of_success_thread);
+		free_all(info);
 		return (join_thread(info, num_of_success_thread));
 	}
 	monitor_philos(info);
-	// free_all(info);
-	// destroy_mutex(&sharing, num_of_success_thread);
+	destroy_mutex(&sharing, num_of_success_thread);
+	free_all(info);
 	return (join_thread(info, num_of_success_thread));
 }
