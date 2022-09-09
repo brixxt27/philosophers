@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_all.c                                         :+:      :+:    :+:   */
+/*   get_now_time.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 19:54:37 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/08 20:45:57 by jayoon           ###   ########.fr       */
+/*   Created: 2022/09/09 20:40:17 by jayoon            #+#    #+#             */
+/*   Updated: 2022/09/09 20:55:28 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <stdlib.h>
+#include <sys/time.h>
 
-void	free_all(t_philo_info *info)
+ssize_t	get_row_now_time(void)
 {
-	free(info->sharing->m_fork);
-	info->sharing->m_fork = NULL;
-	free(info);
-	info = NULL;
+	t_timeval	time;
+
+	gettimeofday(&time, NULL);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }

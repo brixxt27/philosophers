@@ -6,14 +6,14 @@
 #    By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/30 21:13:32 by jayoon            #+#    #+#              #
-#    Updated: 2022/09/08 19:54:55 by jayoon           ###   ########.fr        #
+#    Updated: 2022/09/09 22:34:35 by jayoon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	philo
 
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -pthread
+CFLAGS		=	-Wall -Wextra -Werror -g3 -fsanitize=thread
 DEBUG		=	-g3 -fsanitize=thread
 
 INCS_FLAGS	=	-I $(INCS_DIR)
@@ -33,8 +33,12 @@ SRCS_NAME	=	check_the_number_of_arguments.c \
 				main.c \
 				join_thread.c \
 				free_all.c \
-				init_mutex.c \
-				free_info.c
+				init_mutex_and_shared_data.c \
+				free_info.c \
+				get_now_time.c \
+				get_row_now_time.c \
+				monitor_philos.c
+
 
 OBJS_NAME	=	$(SRCS_NAME:.c=.o)
 

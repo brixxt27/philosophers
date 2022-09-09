@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_all.c                                         :+:      :+:    :+:   */
+/*   get_now_time.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 19:54:37 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/08 20:45:57 by jayoon           ###   ########.fr       */
+/*   Created: 2022/09/09 21:15:55 by jayoon            #+#    #+#             */
+/*   Updated: 2022/09/09 21:36:33 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <stdlib.h>
 
-void	free_all(t_philo_info *info)
+ssize_t	get_now_time(t_philo_info *info)
 {
-	free(info->sharing->m_fork);
-	info->sharing->m_fork = NULL;
-	free(info);
-	info = NULL;
+	return (get_row_now_time() - info->time_to_start);
 }

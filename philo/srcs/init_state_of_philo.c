@@ -36,7 +36,6 @@ t_bool	init_state_of_philo(t_state_of_philo *state, int argc, char *argv[])
 	if (atoi_and_check_error(argv[4], &state->time_to_sleep) == FAIL)
 		return (FAIL);
 	state->num_must_eat = -1;
-	state->flag_dead = 0;
 	if (argc == 6)
 	{
 		if (atoi_and_check_error(argv[5], &state->num_must_eat) == FAIL)
