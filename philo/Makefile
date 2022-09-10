@@ -13,7 +13,7 @@
 NAME		=	philo
 
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -pthread
 DEBUG		=	-g3 -fsanitize=thread
 
 INCS_FLAGS	=	-I $(INCS_DIR)

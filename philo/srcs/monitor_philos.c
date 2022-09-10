@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 21:16:37 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/11 01:41:04 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/11 04:39:12 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	wait_to_create_all_philos(t_philo_info *info)
 	}
 }
 
-static void	do_monitor(t_philo_info *info)
+static int	do_monitor(t_philo_info *info)
 {
 	int		i;
 
@@ -38,7 +38,7 @@ static void	do_monitor(t_philo_info *info)
 		if (i >= info->state->num_philo)
 		{
 			i = 0;
-			usleep(500);
+			usleep(100);
 		}
 		if (is_die(&info[i]))
 		{
@@ -47,29 +47,28 @@ static void	do_monitor(t_philo_info *info)
 			break ;
 		}
 		pthread_mutex_unlock(&info->sharing->m_flag);
-		if (is_eat_enough(&info[i]))
-		{
-			if (++info->sharing->num_enough_eating == info->state->num_philo)
-				break ;
-		}
+		if (is_eat_enough(info))
+			break ;
 		i++;
 	}
+	return (i);
 }
 
 void	monitor_philos(t_philo_info *info)
 {
 	ssize_t	time_to_start;
+	int		idx_philo;
 
 	wait_to_create_all_philos(info);
 	time_to_start = get_row_now_time();
 	init_time_to_start_per_philos(info, time_to_start);
 	pthread_mutex_unlock(&info->sharing->m_flag);
-	do_monitor(info);
+	idx_philo = do_monitor(info);
 	pthread_mutex_lock(&info->sharing->m_flag);
 	if (info->sharing->flag_dead)
 	{
 		pthread_mutex_lock(&info->sharing->m_print);
-		printf("%lu %d %s\n", get_now_time(info), info->idx, STR_DIE);
+		printf("%lu %d %s\n", get_now_time(info), info[idx_philo].idx, STR_DIE);
 		pthread_mutex_unlock(&info->sharing->m_print);
 	}
 	pthread_mutex_unlock(&info->sharing->m_flag);

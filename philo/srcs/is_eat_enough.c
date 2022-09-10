@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 20:11:42 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/11 02:01:40 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/11 04:52:22 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int	is_eat_enough(t_philo_info *info)
 {
-	if (info->state->num_must_eat > 0)
+	pthread_mutex_lock(&info->sharing->m_seat);
+	if (info->sharing->num_enough_eating == info->state->num_philo)
 	{
-		pthread_mutex_lock(&info->sharing->m_seat);
-		if (info->num_eat == info->state->num_must_eat)
-		{
-			pthread_mutex_unlock(&info->sharing->m_seat);
-			return (1);
-		}
+		pthread_mutex_lock(&info->sharing->m_flag);
+		info->sharing->flag_full = FULL;
+		pthread_mutex_unlock(&info->sharing->m_flag);
 		pthread_mutex_unlock(&info->sharing->m_seat);
+		return (1);
 	}
+	pthread_mutex_unlock(&info->sharing->m_seat);
 	return (0);
 }

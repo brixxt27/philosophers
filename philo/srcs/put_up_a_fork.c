@@ -6,12 +6,11 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 23:48:26 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/11 01:21:44 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/11 04:49:07 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <stdio.h>
 
 t_bool	put_up_a_fork(t_philo_info *info)
 {

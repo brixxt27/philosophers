@@ -6,12 +6,11 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 13:31:47 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/11 01:19:28 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/11 04:47:57 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <stdio.h>
 
 static void	wait_to_create_all_threads(t_philo_info *info)
 {
@@ -59,10 +58,12 @@ void	*do_routine_each_philo(void *fptr)
 
 	info = (t_philo_info *)fptr;
 	wait_to_create_all_threads(info);
-	wait_even_numbers(info);
 	if (info->state->num_philo == 1)
 		routine_one_philo(info);
 	else
+	{
+		wait_even_numbers(info);
 		routine_philos(info);
+	}
 	return ((void *)info);
 }

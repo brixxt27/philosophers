@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:19:41 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/11 01:18:01 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/11 02:40:56 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ typedef enum e_philo_dead
 	DEAD
 }	t_philo_dead;
 
+typedef enum e_philo_full
+{
+	NOT_FULL,
+	FULL
+}	t_philo_full;
+
 typedef struct s_shared_data
 {
 	pthread_mutex_t	m_flag;
@@ -43,6 +49,7 @@ typedef struct s_shared_data
 	pthread_mutex_t	m_print;
 	pthread_mutex_t	m_seat;
 	t_philo_dead	flag_dead;
+	t_philo_full	flag_full;
 	ssize_t			num_enough_eating;
 	int				num_seat;
 }	t_shared_data;

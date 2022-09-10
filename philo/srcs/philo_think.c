@@ -6,12 +6,11 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 20:54:53 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/11 01:21:11 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/11 04:49:01 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <stdio.h>
 
 t_bool	philo_think(t_philo_info *info)
 {

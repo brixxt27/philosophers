@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 05:06:58 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/11 01:03:22 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/11 02:40:57 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ t_bool	init_mutex_and_shared_data(t_state_of_philo *state,
 
 	sharing->num_seat = 0;
 	sharing->flag_dead = ALIVE;
+	sharing->flag_full = NOT_FULL;
 	sharing->num_enough_eating = 0;
 	i = 0;
 	if (init_mutexs(state, sharing, i) == SUCCESS)

@@ -6,12 +6,11 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 15:29:41 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/11 01:57:19 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/11 04:47:30 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <stdio.h>
 
 static void	update_time_to_last_eat(t_philo_info *info)
 {
@@ -28,8 +27,10 @@ t_bool	philo_eat(t_philo_info *info)
 	print_status(info, STR_EAT);
 	if (info->state->num_must_eat > 0)
 	{
-		pthread_mutex_lock(&info->sharing->m_seat);
 		info->num_eat++;
+		pthread_mutex_lock(&info->sharing->m_seat);
+		if (info->num_eat == info->state->num_must_eat)
+			info->sharing->num_enough_eating++;
 		pthread_mutex_unlock(&info->sharing->m_seat);
 	}
 	xusleep(info, info->state->time_to_eat);

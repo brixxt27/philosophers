@@ -6,12 +6,11 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 20:50:57 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/11 01:20:53 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/11 04:48:58 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <stdio.h>
 
 t_bool	philo_sleep(t_philo_info *info)
 {
