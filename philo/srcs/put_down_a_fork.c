@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 00:13:26 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/10 17:44:12 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/10 21:42:03 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_bool	put_down_a_fork(t_philo_info *info)
 {
-	if (is_die(info))
+	if (check_flag_die(info))
 		return (FAIL);
 	if (info->idx % 2 == 1)
 	{

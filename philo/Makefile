@@ -6,15 +6,14 @@
 #    By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/30 21:13:32 by jayoon            #+#    #+#              #
-#    Updated: 2022/09/10 17:41:13 by jayoon           ###   ########.fr        #
+#    Updated: 2022/09/10 22:22:45 by jayoon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	philo
 
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -g3 -fsanitize=thread
-# CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror
 DEBUG		=	-g3 -fsanitize=thread
 
 INCS_FLAGS	=	-I $(INCS_DIR)
@@ -23,8 +22,7 @@ SRCS_DIR	=	./srcs/
 OBJS_DIR	=	./objs/
 INCS_DIR 	=	./includes/
 
-SRCS_NAME	=	check_the_number_of_arguments.c \
-				create_threads.c \
+SRCS_NAME	=	create_threads.c \
 				do_routine_each_philo.c \
 				free_all.c \
 				free_info.c \
@@ -45,7 +43,12 @@ SRCS_NAME	=	check_the_number_of_arguments.c \
 				put_up_a_fork.c	\
 				philo_eat.c	\
 				xusleep.c	\
-				init_a_mutex.c
+				init_a_mutex.c \
+				is_eat_enough.c \
+				init_time_to_start_per_philos.c \
+				check_flag_die.c \
+				philo_sleep.c \
+				philo_think.c
 
 
 OBJS_NAME	=	$(SRCS_NAME:.c=.o)

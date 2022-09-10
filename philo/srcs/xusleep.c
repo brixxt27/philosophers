@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 15:40:08 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/10 16:53:58 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/10 21:54:32 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ void	xusleep(t_philo_info *info, ssize_t state_time)
 
 	time_to_start_xusleep = get_now_time(info);
 	while (get_now_time(info) - time_to_start_xusleep <= state_time)
-		usleep(200);
+		usleep(500);
 }

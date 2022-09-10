@@ -25,8 +25,20 @@ static t_bool	atoi_and_check_error(char *str, ssize_t *num)
 	return (SUCCESS);
 }
 
+static t_bool	check_the_number_of_arguments(int argc)
+{
+	if (argc < 5 || argc > 6)
+	{
+		printf("The number of parameters must be five of six.\n");
+		return (FAIL);
+	}
+	return (SUCCESS);
+}
+
 t_bool	init_state_of_philo(t_state_of_philo *state, int argc, char *argv[])
 {
+	if (check_the_number_of_arguments(argc) == FAIL)
+		return (FAIL);
 	if (atoi_and_check_error(argv[1], &state->num_philo) == FAIL)
 		return (FAIL);
 	if (atoi_and_check_error(argv[2], &state->time_to_die) == FAIL)

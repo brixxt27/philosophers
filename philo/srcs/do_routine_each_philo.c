@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 13:31:47 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/10 19:25:52 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/10 22:06:07 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ static void	wait_to_create_all_threads(t_philo_info *info)
 static void	wait_even_numbers(t_philo_info *info)
 {
 	if (info->idx % 2)
-	{
-		usleep(200);
-	}
+		xusleep(info, info->state->time_to_eat / 2);
 }
 
 static void	routine_one_philo(t_philo_info *info)
@@ -36,6 +34,26 @@ static void	routine_one_philo(t_philo_info *info)
 	printf("%lu %d %s\n", get_now_time(info), info->idx, STR_FORK);
 	pthread_mutex_unlock(&info->sharing->m_print);
 	xusleep(info, info->state->time_to_die);	
+}
+
+static void	routine_philos(t_philo_info *info)
+{
+	while (1)
+	{
+		if (put_up_a_fork(info) == FAIL)
+			break ;
+		if (philo_eat(info) == FAIL)
+			break ;
+		if (put_down_a_fork(info) == FAIL)
+			break ;
+		if (philo_sleep(info) == FAIL)
+			break ;
+		if (philo_think(info) == FAIL)
+			break ;
+		usleep(300);
+	}
+	pthread_mutex_unlock(info->left_fork);
+	pthread_mutex_unlock(info->right_fork);
 }
 
 void	*do_routine_each_philo(void *fptr)
@@ -48,17 +66,6 @@ void	*do_routine_each_philo(void *fptr)
 	if (info->state->num_philo == 1)
 		routine_one_philo(info);
 	else
-	{
-		while (1)
-		{
-			if (put_up_a_fork(info) == FAIL)
-				break ;
-			if (philo_eat(info) == FAIL)
-				break ;
-			if (put_down_a_fork(info) == FAIL)
-				break ;
-			usleep(10);
-		}
-	}
+		routine_philos(info);
 	return ((void *)info);
 }

@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_die.c                                           :+:      :+:    :+:   */
+/*   init_time_to_start_per_philos.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/09 23:46:54 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/10 20:04:37 by jayoon           ###   ########.fr       */
+/*   Created: 2022/09/10 20:13:46 by jayoon            #+#    #+#             */
+/*   Updated: 2022/09/10 20:14:05 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <sys/time.h>
 
-int	is_die(t_philo_info *info)
+void	init_time_to_start_per_philos(t_philo_info *info, 
+	ssize_t time_to_start)
 {
-	pthread_mutex_lock(&info->sharing->m_flag);
-	if (get_now_time(info) - info->time_to_last_eat >= info->state->time_to_die)
+	int	i;
+
+	i = 0;
+	while (i < info->state->num_philo)
 	{
-		pthread_mutex_unlock(&info->sharing->m_flag);
-		return (1);
+		info[i].time_to_start = time_to_start;
+		i++;
 	}
-	pthread_mutex_unlock(&info->sharing->m_flag);
-	return (0);
 }

@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_die.c                                           :+:      :+:    :+:   */
+/*   philo_think.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/09 23:46:54 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/10 20:04:37 by jayoon           ###   ########.fr       */
+/*   Created: 2022/09/10 20:54:53 by jayoon            #+#    #+#             */
+/*   Updated: 2022/09/10 20:58:38 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <sys/time.h>
+#include <stdio.h>
 
-int	is_die(t_philo_info *info)
+t_bool	philo_think(t_philo_info *info)
 {
-	pthread_mutex_lock(&info->sharing->m_flag);
-	if (get_now_time(info) - info->time_to_last_eat >= info->state->time_to_die)
-	{
-		pthread_mutex_unlock(&info->sharing->m_flag);
-		return (1);
-	}
-	pthread_mutex_unlock(&info->sharing->m_flag);
-	return (0);
+	if (check_flag_die(info))
+		return (FAIL);
+	pthread_mutex_lock(&info->sharing->m_print);
+	printf("%lu %d %s\n", get_now_time(info), info->idx, STR_THINK);
+	pthread_mutex_unlock(&info->sharing->m_print);
+	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 15:29:41 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/10 17:44:16 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/10 21:56:12 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	update_time_to_last_eat(t_philo_info *info)
 
 t_bool	philo_eat(t_philo_info *info)
 {
-	if (is_die(info))
+	if (check_flag_die(info))
 		return (FAIL);
 	update_time_to_last_eat(info);
 	pthread_mutex_lock(&info->sharing->m_print);

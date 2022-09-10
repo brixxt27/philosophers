@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:19:41 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/10 17:40:40 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/10 22:22:11 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ typedef struct s_philo_info
 }	t_philo_info;
 
 /* check exeception and init variable */
-t_bool			check_the_number_of_arguments(int argc);
 t_bool			init_state_of_philo(t_state_of_philo *state, int argc, \
 					char *argv[]);
 t_bool			init_mutex_and_shared_data(t_state_of_philo *state, 
@@ -78,6 +77,8 @@ t_bool			init_mutex_and_shared_data(t_state_of_philo *state,
 t_bool			init_a_mutex(pthread_mutex_t *mutex);
 t_philo_info	*init_philo_info(t_state_of_philo *state, 
 					t_shared_data *sharing);
+void			init_time_to_start_per_philos(t_philo_info *info, 
+					ssize_t time_to_start);
 
 /* about thread */
 t_bool			create_threads(t_philo_info *info);
@@ -89,11 +90,17 @@ ssize_t			get_now_time(t_philo_info *info);
 int				is_die(t_philo_info *info);
 void			xusleep(t_philo_info *info, ssize_t state_time);
 
+/* check status */
+int				is_eat_enough(t_philo_info *info);
+int				check_flag_die(t_philo_info *info);
+
 /* main: philo */
 void			*do_routine_each_philo(void *fptr);
 t_bool			put_up_a_fork(t_philo_info *info);
 t_bool			philo_eat(t_philo_info *info);
 t_bool			put_down_a_fork(t_philo_info *info);
+t_bool			philo_sleep(t_philo_info *info);
+t_bool			philo_think(t_philo_info *info);
 
 /* main: monitor */
 void  			monitor_philos(t_philo_info *info);
