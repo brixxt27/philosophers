@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 13:31:47 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/10 23:26:25 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/11 01:19:28 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,8 @@ static void	wait_even_numbers(t_philo_info *info)
 
 static void	routine_one_philo(t_philo_info *info)
 {
-	pthread_mutex_lock(&info->sharing->m_print);
-	printf("%lu %d %s\n", get_now_time(info), info->idx, STR_FORK);
-	pthread_mutex_unlock(&info->sharing->m_print);
-	xusleep(info, info->state->time_to_die);	
+	print_status(info, STR_FORK);
+	xusleep(info, info->state->time_to_die);
 }
 
 static void	routine_philos(t_philo_info *info)

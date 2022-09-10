@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 05:06:58 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/10 21:25:04 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/11 01:03:22 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	destroy_and_free_m_fork(t_shared_data *sharing, int i)
 	sharing->m_fork = NULL;
 }
 
-static t_bool	init_mutexs(t_state_of_philo *state, t_shared_data *sharing, 
+static t_bool	init_mutexs(t_state_of_philo *state, t_shared_data *sharing,
 	int i)
 {
 	if (init_a_mutex(&sharing->m_print) == SUCCESS)
@@ -65,7 +65,7 @@ static t_bool	init_mutexs(t_state_of_philo *state, t_shared_data *sharing,
 				if (init_a_mutex(&sharing->m_flag) == SUCCESS)
 				{
 					if (init_a_mutex(&sharing->m_seat) == SUCCESS)
-						return (SUCCESS); 
+						return (SUCCESS);
 				}
 			}
 			destroy_and_free_m_fork(sharing, i);
@@ -75,7 +75,7 @@ static t_bool	init_mutexs(t_state_of_philo *state, t_shared_data *sharing,
 	return (FAIL);
 }
 
-t_bool	init_mutex_and_shared_data(t_state_of_philo *state, 
+t_bool	init_mutex_and_shared_data(t_state_of_philo *state,
 	t_shared_data *sharing)
 {
 	int	i;

@@ -6,7 +6,7 @@
 #    By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/30 21:13:32 by jayoon            #+#    #+#              #
-#    Updated: 2022/09/10 23:11:47 by jayoon           ###   ########.fr        #
+#    Updated: 2022/09/11 01:18:16 by jayoon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,8 @@ SRCS_NAME	=	create_threads.c \
 				init_time_to_start_per_philos.c \
 				check_flag_die.c \
 				philo_sleep.c \
-				philo_think.c
+				philo_think.c \
+				print_status.c
 
 
 OBJS_NAME	=	$(SRCS_NAME:.c=.o)

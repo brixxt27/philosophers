@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 21:16:37 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/10 23:10:41 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/11 01:41:04 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,27 +36,29 @@ static void	do_monitor(t_philo_info *info)
 	while (1)
 	{
 		if (i >= info->state->num_philo)
+		{
 			i = 0;
+			usleep(500);
+		}
 		if (is_die(&info[i]))
 		{
-			pthread_mutex_lock(&info->sharing->m_flag);
 			info->sharing->flag_dead = DEAD;
 			pthread_mutex_unlock(&info->sharing->m_flag);
 			break ;
 		}
+		pthread_mutex_unlock(&info->sharing->m_flag);
 		if (is_eat_enough(&info[i]))
 		{
 			if (++info->sharing->num_enough_eating == info->state->num_philo)
 				break ;
 		}
-		usleep(500);
 		i++;
 	}
 }
 
-void  monitor_philos(t_philo_info *info)
+void	monitor_philos(t_philo_info *info)
 {
-	ssize_t time_to_start;
+	ssize_t	time_to_start;
 
 	wait_to_create_all_philos(info);
 	time_to_start = get_row_now_time();
@@ -72,21 +74,3 @@ void  monitor_philos(t_philo_info *info)
 	}
 	pthread_mutex_unlock(&info->sharing->m_flag);
 }
-
-
-// monitor()
-// while(1)
-// {
-// 	if (check_philo_die(philo[i) || all_philo_eat()))
-// 	{
-// 		philo_print(DIE, "is die", )''
-// 	}
-// }
-
-		// pthread_mutex_lock(&info->sharing->m_flag);
-		// if (info->sharing->flag_dead == DEAD)
-		// {
-		// 	pthread_mutex_unlock(&info->sharing->m_flag);
-		// 	break ;
-		// }
-		// pthread_mutex_unlock(&info->sharing->m_flag);

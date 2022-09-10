@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 20:11:42 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/10 20:11:57 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/11 02:01:40 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	is_eat_enough(t_philo_info *info)
 	if (info->state->num_must_eat > 0)
 	{
 		pthread_mutex_lock(&info->sharing->m_seat);
-		if (info->num_eat >= info->state->num_must_eat)
+		if (info->num_eat == info->state->num_must_eat)
 		{
 			pthread_mutex_unlock(&info->sharing->m_seat);
 			return (1);

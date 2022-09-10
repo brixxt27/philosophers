@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_state_of_philo.c                                  :+:      :+:    :+:   */
+/*   init_state_of_philo.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 21:05:21 by jayoon            #+#    #+#             */
-/*   Updated: 2022/08/19 22:02:54 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/11 01:52:31 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 #include "philo.h"
 #include <stdio.h>
 
+static t_bool	check_the_number_of_arguments(int argc)
+{
+	if (argc < 5 || argc > 6)
+	{
+		printf("The number of parameters must be five of six.\n");
+		return (FAIL);
+	}
+	return (SUCCESS);
+}
+
 static t_bool	atoi_and_check_error(char *str, ssize_t *num)
 {
 	*num = ft_atol(str);
 	if (*num <= 0 || *num > INT_MAX)
 	{
 		printf("Please put in int type data of 1 or higher\n");
-		return (FAIL);
-	}
-	return (SUCCESS);
-}
-
-static t_bool	check_the_number_of_arguments(int argc)
-{
-	if (argc < 5 || argc > 6)
-	{
-		printf("The number of parameters must be five of six.\n");
 		return (FAIL);
 	}
 	return (SUCCESS);

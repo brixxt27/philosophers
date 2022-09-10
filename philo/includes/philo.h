@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:19:41 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/10 22:22:11 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/11 01:18:01 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define STR_THINK	"is thinking"
 # define STR_DIE	"died"
 
-typedef struct timeval t_timeval;
+typedef struct timeval	t_timeval;
 
 typedef enum e_bool
 {
@@ -70,14 +70,14 @@ typedef struct s_philo_info
 }	t_philo_info;
 
 /* check exeception and init variable */
-t_bool			init_state_of_philo(t_state_of_philo *state, int argc, \
+t_bool			init_state_of_philo(t_state_of_philo *state, int argc,
 					char *argv[]);
-t_bool			init_mutex_and_shared_data(t_state_of_philo *state, 
+t_bool			init_mutex_and_shared_data(t_state_of_philo *state,
 					t_shared_data *sharing);
 t_bool			init_a_mutex(pthread_mutex_t *mutex);
-t_philo_info	*init_philo_info(t_state_of_philo *state, 
+t_philo_info	*init_philo_info(t_state_of_philo *state,
 					t_shared_data *sharing);
-void			init_time_to_start_per_philos(t_philo_info *info, 
+void			init_time_to_start_per_philos(t_philo_info *info,
 					ssize_t time_to_start);
 
 /* about thread */
@@ -89,6 +89,9 @@ ssize_t			get_row_now_time(void);
 ssize_t			get_now_time(t_philo_info *info);
 int				is_die(t_philo_info *info);
 void			xusleep(t_philo_info *info, ssize_t state_time);
+
+/* print */
+void			print_status(t_philo_info *info, char *status);
 
 /* check status */
 int				is_eat_enough(t_philo_info *info);
@@ -103,6 +106,6 @@ t_bool			philo_sleep(t_philo_info *info);
 t_bool			philo_think(t_philo_info *info);
 
 /* main: monitor */
-void  			monitor_philos(t_philo_info *info);
+void			monitor_philos(t_philo_info *info);
 
 #endif
