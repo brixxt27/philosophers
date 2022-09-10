@@ -6,7 +6,7 @@
 #    By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/30 21:13:32 by jayoon            #+#    #+#              #
-#    Updated: 2022/09/10 00:14:42 by jayoon           ###   ########.fr        #
+#    Updated: 2022/09/10 10:53:57 by jayoon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME		=	philo
 
 CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror -g3 -fsanitize=thread
+# CFLAGS		=	-Wall -Wextra -Werror
 DEBUG		=	-g3 -fsanitize=thread
 
 INCS_FLAGS	=	-I $(INCS_DIR)

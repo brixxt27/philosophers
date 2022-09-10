@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 21:50:31 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/07 00:19:13 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/10 10:18:56 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ int		ft_isspace(int c);
 
 /* free */
 t_bool  free_info(t_philo_info *info);
-void	free_all(t_philo_info *info);
+int		free_all(t_philo_info *info, int num_success_philo);
 
 #endif

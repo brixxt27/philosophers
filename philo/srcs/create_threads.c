@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 20:28:30 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/10 00:19:17 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/10 10:53:20 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	*do_routine_each_philo(void *fptr)
 		// if (routine_think(info) == FAIL)
 		// 	break ;
 		// fsanitize 관찰용 usleep
-		usleep(100000);
+		usleep(1000);
 	}
 	// die
 	pthread_mutex_lock(&info->sharing->m_flag);

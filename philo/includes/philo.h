@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:19:41 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/10 00:17:40 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/10 10:16:11 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_philo_info	*init_philo_info(t_state_of_philo *state, t_shared_data *sharing);
 
 /* about thread */
 t_bool			create_threads(t_philo_info *info);
-int				join_thread(t_philo_info *info, int num_of_success_thread);
+void			join_thread(t_philo_info *info, int num_of_success_thread);
 
 /* about time */
 ssize_t			get_row_now_time(void);

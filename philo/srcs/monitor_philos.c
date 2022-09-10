@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 21:16:37 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/10 00:21:04 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/10 10:58:08 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ void  monitor_philos(t_philo_info *info)
 	{
 		pthread_mutex_lock(&info->sharing->m_flag);
 		if (info->sharing->flag_dead == DEAD)
+		{
+			pthread_mutex_unlock(&info->sharing->m_flag);
 			break ;
+		}
 		pthread_mutex_unlock(&info->sharing->m_flag);
 		usleep(1);
 	}
