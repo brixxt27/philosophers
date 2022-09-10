@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 20:48:42 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/09 22:59:51 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/10 17:00:34 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_philo_info	*init_philo_info(t_state_of_philo *state,
 		else
 			info[i].left_fork = &sharing->m_fork[i - 1];
 		info[i].time_to_last_eat = 0;
+		info[i].num_eat = 0;
 		info[i].idx = i + 1;
 		i++;
 	}

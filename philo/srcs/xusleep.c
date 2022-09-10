@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_down_a_fork.c                                  :+:      :+:    :+:   */
+/*   xusleep.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/10 00:13:26 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/10 17:44:12 by jayoon           ###   ########.fr       */
+/*   Created: 2022/09/10 15:40:08 by jayoon            #+#    #+#             */
+/*   Updated: 2022/09/10 16:53:58 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_bool	put_down_a_fork(t_philo_info *info)
+void	xusleep(t_philo_info *info, ssize_t state_time)
 {
-	if (is_die(info))
-		return (FAIL);
-	if (info->idx % 2 == 1)
-	{
-		pthread_mutex_unlock(info->right_fork);
-		pthread_mutex_unlock(info->left_fork);
-	}
-	else
-	{
-		pthread_mutex_unlock(info->left_fork);
-		pthread_mutex_unlock(info->right_fork);
-	}
-	return (SUCCESS);
+	ssize_t	time_to_start_xusleep;
+
+	time_to_start_xusleep = get_now_time(info);
+	while (get_now_time(info) - time_to_start_xusleep <= state_time)
+		usleep(200);
 }

@@ -17,7 +17,7 @@
 static t_bool	atoi_and_check_error(char *str, ssize_t *num)
 {
 	*num = ft_atol(str);
-	if (*num < 0 || *num > INT_MAX)
+	if (*num <= 0 || *num > INT_MAX)
 	{
 		printf("Please put in int type data of 1 or higher\n");
 		return (FAIL);
