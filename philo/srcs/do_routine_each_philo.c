@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 13:31:47 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/10 22:06:07 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/10 23:26:25 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ static void	routine_philos(t_philo_info *info)
 			break ;
 		if (philo_think(info) == FAIL)
 			break ;
-		usleep(300);
 	}
 	pthread_mutex_unlock(info->left_fork);
 	pthread_mutex_unlock(info->right_fork);

@@ -6,7 +6,7 @@
 /*   By: jayoon <jayoon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 21:16:37 by jayoon            #+#    #+#             */
-/*   Updated: 2022/09/10 21:43:47 by jayoon           ###   ########.fr       */
+/*   Updated: 2022/09/10 23:10:41 by jayoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	do_monitor(t_philo_info *info)
 			if (++info->sharing->num_enough_eating == info->state->num_philo)
 				break ;
 		}
-		usleep(100);
+		usleep(500);
 		i++;
 	}
 }
